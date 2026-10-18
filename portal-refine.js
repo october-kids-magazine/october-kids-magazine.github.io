@@ -15,6 +15,10 @@
   };
   const art = icon => `<svg class="portal-icon" viewBox="0 0 72 72" fill="none" stroke="#315b55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[icon] || icons.star}</svg>`;
   const esc = M.esc;
+  // The child portrait spread receives the new title; neighboring video layouts stay intact.
+  for (const page of M.pages.filter(p => p.section === 'creative' && p.media.some(id => M.media.get(id)?.type === 'video'))) {
+    page.html = page.html.replace('<h2>أبطالنا بالذكاء الاصطناعي</h2>', '<h2>إبداعات أطفالنا</h2>').replace('Our AI Heroes</p>', 'Children’s Creative Moments</p>');
+  }
   for (const item of C.activityDirectory) {
     if (!item.section) continue;
     for (const page of M.pages.filter(p => p.section === item.section)) {

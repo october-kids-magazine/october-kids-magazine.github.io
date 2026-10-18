@@ -3,6 +3,10 @@
   const C=window.MAGAZINE, M=window.Magazine, api=window.magazineAPI;
   const group=C.activityDirectory.find(x=>x.id===new URLSearchParams(location.search).get('category') && x.ids);
   if (!group) return;
+  if (group.id === 'ai-images') {
+    const heroesPage=M.pages.findIndex(p=>group.ids.every(id=>p.media.includes(id)));
+    if(heroesPage>=0){api.go(heroesPage+1);return;}
+  }
   const items=group.ids.map(id=>M.media.get(id)).filter(x=>x&&!x.hidden);
   const dialog=document.createElement('dialog');
   dialog.className='category-dialog';
