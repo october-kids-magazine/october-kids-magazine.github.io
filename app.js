@@ -13,13 +13,14 @@ $('#next').onclick=next;$('#previous').onclick=prev;
 $('#navigation').innerHTML=M.navigation.map(s=>`<a href="#page=${s.page}" data-page="${s.page}"><span>${M.esc(s.arabic)}<small>${M.esc(s.english)}</small></span><b>${s.page}</b></a>`).join('');
 const drawer=$('#drawer');function closeDrawer(){drawer.hidden=true;$('#overview').setAttribute('aria-expanded','false');$('#overview').focus()};$('#overview').onclick=()=>{drawer.hidden=!drawer.hidden;$('#overview').setAttribute('aria-expanded',String(!drawer.hidden));if(!drawer.hidden)$('#close-drawer').focus()};$('#close-drawer').onclick=closeDrawer;
 document.addEventListener('click',e=>{const link=e.target.closest('[data-page]');if(link){e.preventDefault();go(Number(link.dataset.page));if(!drawer.hidden)closeDrawer()};const button=e.target.closest('[data-media]');if(button){e.preventDefault();openMedia(button.dataset.media,button)}});
-const dialog=$('#media-dialog');let backgroundAudio=null,resumeMusic=false,mediaItems=[],mediaIndex=0;
-function openMedia(id,trigger){
+const dialog=$('#media-dialog');let backgroundAudio=null,resumeMusic=false,mediaItems=[],mediaIndex=0,mediaGroup=null;
+function openMedia(id,trigger,group){
  const m=M.media.get(id);if(!m)return;const alreadyOpen=dialog.open,filmRoom=$('#film-dialog');
  if(!alreadyOpen)returnFocus=filmRoom.open?$('#films'):(trigger||document.activeElement);
  if(filmRoom.open)filmRoom.close();
  const old=dialog.querySelector('video');if(old){old.pause();old.removeAttribute('src');old.load()}
- const v=m.type==='video';mediaItems=v?C.videos.filter(x=>!x.hidden).sort((a,b)=>a.sortOrder-b.sortOrder):M.pages[current].media.map(x=>M.media.get(x)).filter(x=>x?.type==='image');if(!mediaItems.some(x=>x.id===id))mediaItems=[m];mediaIndex=mediaItems.findIndex(x=>x.id===id);
+ if(group)mediaGroup=group;else if(!alreadyOpen)mediaGroup=null;
+ const v=m.type==='video';mediaItems=mediaGroup?mediaGroup.map(x=>M.media.get(x)).filter(x=>x&&!x.hidden):v?C.videos.filter(x=>!x.hidden).sort((a,b)=>a.sortOrder-b.sortOrder):M.pages[current].media.map(x=>M.media.get(x)).filter(x=>x?.type==='image');if(!mediaItems.some(x=>x.id===id))mediaItems=[m];mediaIndex=mediaItems.findIndex(x=>x.id===id);
  $('#media-content').classList.remove('zoomed');$('#zoom-photo').hidden=v;$('#zoom-photo').textContent='تكبير الصورة +';
  $('#media-content').innerHTML=`<p class="media-kicker">${v?'THE FILM ROOM · لحظات تتحرك':'CLOSER LOOK · تفاصيل من حكايتنا'}</p>`+(v?`<video controls playsinline preload="metadata" poster="${m.poster}" src="${m.optimizedPath}" aria-label="${M.esc(m.captionArabic)}"></video>`:`<img class="lightbox-photo" src="${m.optimizedPath}" alt="${M.esc(m.captionArabic)}">`)+`<div class="media-title"><h3>${M.esc(m.childNameArabic||m.captionArabic)}</h3><span class="media-count">${mediaIndex+1} / ${mediaItems.length}</span></div>${m.aiStatus==='verified'?'<small>محتوى إبداعي بالذكاء الاصطناعي · AI Creative Content</small>':''}`;
  $('#media-prev').disabled=mediaIndex===0;$('#media-next').disabled=mediaIndex>=mediaItems.length-1;$('#media-return').textContent=`العودة إلى صفحة ${current+1}`;

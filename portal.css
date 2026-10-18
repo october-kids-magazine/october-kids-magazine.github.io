@@ -2,3 +2,22 @@
 @media(max-width:700px){.activity-portal .section-head h2{font-size:25px}.portal-intro{font-size:10px;margin:5px 0 8px}.portal-cards{gap:7px}.portal-card{grid-template-columns:1fr 70px;grid-template-rows:20px 1fr 13px;min-height:95px;padding:6px;gap:3px;border-radius:12px 4px}.portal-icon{width:20px;height:20px}.portal-copy h3{font-size:12px;line-height:1.35}.portal-copy small{font-size:7px;margin-top:2px}.portal-qr{width:70px;height:70px}.portal-action{font-size:8px}.portal-wide{min-height:73px;grid-template-columns:30px 1fr 70px;grid-template-rows:1fr 13px}.portal-wide .portal-icon{width:28px;height:32px}.contents .toc-list a{padding-top:0;padding-bottom:0}}
 
 @media(max-width:700px){.activity-portal .page-content{padding-top:20px}.portal-card{grid-template-rows:16px 1fr 11px;min-height:88px;padding:5px;gap:2px}.portal-icon{width:16px;height:16px}.portal-copy h3{font-size:11px}.portal-copy small{font-size:6.5px}.portal-wide{grid-template-rows:1fr 11px;min-height:78px}.portal-wide .portal-copy h3{font-size:12px}}
+
+/* Nine destinations, kept on a single magazine page. */
+.portal-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.portal-card{display:flex;flex-direction:column;justify-content:flex-start;min-height:0;padding:8px 5px;gap:4px;text-align:center}
+.portal-icon{width:26px;height:26px;flex-shrink:0}
+.portal-copy{align-self:stretch}.portal-copy h3{font-size:15px;line-height:1.35;min-height:41px}
+.portal-copy small{font-size:8px;line-height:1.3;min-height:31px;text-align:center;margin:3px 0}
+.portal-qr{width:92px;height:92px;margin-top:auto}.portal-action{font-size:9px}
+.portal-color-8{background:#d8eaf0}
+.activity-portal .portal-action{display:none}
+@media(min-width:701px){.activity-portal .portal-card{padding:5px;gap:3px}.activity-portal .portal-icon{width:22px;height:22px}.activity-portal .portal-copy small{min-height:24px;margin:2px 0}.activity-portal .portal-qr{width:84px;height:84px}}
+.category-dialog{width:min(900px,92vw);max-height:88dvh;box-sizing:border-box;border:0;border-radius:20px;padding:24px;background:#fff9ed;color:#285a51;overflow:auto}
+.category-dialog::backdrop{background:#123c35b8}.category-dialog h2{font-size:clamp(20px,4vw,30px);margin:12px 40px 8px}.category-dialog>p{text-align:center}
+.category-close{position:absolute;top:12px;left:12px;width:44px;height:44px;border:0;border-radius:50%;font-size:28px;background:#e4eee1;color:#285a51;cursor:pointer}
+.category-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+.category-items button{border:1px solid #d9dfcf;background:#fff;border-radius:12px;overflow:hidden;padding:0;cursor:pointer;color:#285a51;font:inherit}
+.category-items img{width:100%;height:180px;object-fit:contain;background:#e4eee1;display:block}.category-items span{display:block;padding:12px}
+@media(max-width:700px){.portal-cards{gap:5px}.portal-card{padding:4px 2px;gap:2px;border-width:1px}.portal-icon{width:17px;height:17px}.portal-copy h3{font-size:10px;min-height:28px}.portal-copy small{font-size:6.2px;min-height:24px;margin:1px 0}.portal-qr{width:66px;height:66px}.portal-action{font-size:7px}.activity-portal .section-head{margin-bottom:3px}.portal-intro{font-size:9px;margin:3px 0 5px}.category-dialog{padding:18px}.category-items img{height:145px}}
+@media(max-width:700px){.activity-portal .portal-card{padding:2px;gap:1px}.activity-portal .portal-icon{width:14px;height:14px}.activity-portal .portal-qr{width:60px;height:60px}.activity-portal .portal-copy small{min-height:18px}.activity-portal .section-head h2{font-size:23px}.activity-portal .section-head .eyebrow{font-size:8px;margin:2px 0}.activity-portal .section-head{padding-bottom:5px}}

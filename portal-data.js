@@ -1,13 +1,25 @@
 (function () {
-  const base = window.MAGAZINE.siteUrl.replace(/\/$/, '');
-  window.MAGAZINE.activityDirectory = [
-    { id: 'craft-work', arabic: 'أعمال يدوية ومشروعات فنية', english: 'Crafts & Art Projects', icon: 'pencil', target: '?section=classroom', qr: 'craft-work' },
-    { id: 'recitation', arabic: 'الإلقاء والمشاركات الفردية', english: 'Recitation & Solo Performances', icon: 'speech', target: '?video=v01', qr: 'recitation' },
-    { id: 'national-performances', arabic: 'العروض الوطنية', english: 'National Performances', icon: 'music', target: '?section=videos', qr: 'national-performances' },
-    { id: 'models', arabic: 'المجسمات', english: 'Models & 3D Projects', icon: 'blocks', target: '?section=october-crafts', qr: 'models' },
-    { id: 'celebration-photos', arabic: 'صور الاحتفال', english: 'Celebration Photos', icon: 'flag', target: '?section=moments', qr: 'celebration-photos' },
-    { id: 'children-photos', arabic: 'صور أطفال الروضة', english: 'Kindergarten Photos', icon: 'star', target: '?section=children', qr: 'children-photos' },
-    { id: 'ai-videos', arabic: 'فيديوهات بالذكاء الاصطناعي', english: 'AI-Generated Videos', icon: 'play', target: '?video=v03', qr: 'ai-videos' },
-    { id: 'ai-images', arabic: 'مساحة للخيال بالذكاء الاصطناعي', english: 'AI Imagination Gallery', icon: 'dream', target: '?section=october-story', qr: 'ai-images' }
-  ].map(item => ({ ...item, url: base + '/' + item.target }));
+  const C = window.MAGAZINE, base = C.siteUrl.replace(/\/$/, '');
+  // Mixed creative pages keep their established media; only verified items enter AI-only galleries.
+  const creative=C.sections.find(s=>s.id==='creative');
+  if(creative)Object.assign(creative,{arabic:'إبداعات أطفالنا',english:'Children’s Creative Moments'});
+  const definitions = [
+    ['story', 'رواية القصة', 'Storytelling', 'book', 'october-story'],
+    ['children-photos', 'صور الأطفال', 'Children’s Photos', 'star', 'children'],
+    ['celebration-photos', 'صور العروض', 'Performance Photos', 'stage', 'moments'],
+    ['craft-work', 'الرسم الحر والنشاطات', 'Free Drawing & Activities', 'pencil', 'classroom'],
+    ['models', 'مجسمات أكتوبر بخامات البيئة', 'October Models with Environmental Materials', 'blocks', 'october-crafts'],
+    ['recitation', 'فيديوهات الإلقاء', 'Recitation Videos', 'speech', null, ['v01','v05','v21']],
+    ['national-performances', 'فيديوهات العروض والأغاني الوطنية', 'Performance & National Songs Videos', 'music', null, ['v02','v04','v08','v09','v13','v14','v18','v19','v20','last']],
+    ['ai-images', 'صور بالذكاء الاصطناعي', 'AI-Generated Images', 'dream', null, ['october-ai','story-teamwork','story-peace']],
+    ['ai-videos', 'فيديوهات بالذكاء الاصطناعي', 'AI-Generated Videos', 'play', null, ['v03']]
+  ];
+  C.activityDirectory = definitions.map(([id, arabic, english, icon, section, ids]) => {
+    const target = section ? '?section=' + section : '?category=' + id;
+    return {id, arabic, english, icon, section, ids, target, qr:id, url:base+'/'+target};
+  });
+  for (const item of C.activityDirectory) {
+    const section = C.sections.find(s => s.id === item.section);
+    if (section) Object.assign(section, {arabic:item.arabic, english:item.english});
+  }
 })();
