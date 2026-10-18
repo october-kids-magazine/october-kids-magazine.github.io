@@ -2,3 +2,5 @@
 @media(max-width:700px){.activity-portal .section-head h2{font-size:26px}.activity-portal .section-head{margin-bottom:8px}.portal-intro{font-size:11px;margin:5px 0 12px}.portal-cards{gap:10px}.portal-card{grid-template-columns:35px 1fr 74px;gap:7px;min-height:96px;padding:9px;border-radius:16px 6px}.portal-icon{width:35px;height:48px}.portal-qr{width:74px;height:74px}.portal-copy h3{font-size:16px}.portal-copy small{font-size:8px}.portal-copy p{font-size:10px;margin:3px 0}.portal-copy b{font-size:10px}.portal-note{font-size:9px;margin-top:12px}}
 
 .contents .toc-list a{padding-top:5px;padding-bottom:5px}.contents .endnote{margin-top:8px}@media(max-width:700px){.contents .toc-list a{padding-top:2px;padding-bottom:2px}}
+
+.contents .toc-list a{padding-top:1px;padding-bottom:1px}@media(max-width:700px){.contents .toc-list a{padding-top:0;padding-bottom:0}.portal-note{display:none}}
