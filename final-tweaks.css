@@ -22,3 +22,5 @@
 .leadership .deputy-copy>span small{text-align:right;margin-top:2px}
 .leadership .deputy-entry .deputy-photo{width:80%;height:162px;justify-self:center}
 @media(max-width:700px){.leadership .deputy-entry .deputy-photo{height:105px}}
+.leadership .manager-photo{height:195px}
+@media(max-width:700px){.leadership .manager-photo{height:127px}}
