@@ -20,3 +20,5 @@
 .leadership .supervisor>p:not(.eyebrow){margin-top:2px;margin-bottom:2px}
 .leadership .deputy-copy>span{display:block;line-height:1.4}
 .leadership .deputy-copy>span small{text-align:right;margin-top:2px}
+.leadership .deputy-entry .deputy-photo{width:80%;height:162px;justify-self:center}
+@media(max-width:700px){.leadership .deputy-entry .deputy-photo{height:105px}}
