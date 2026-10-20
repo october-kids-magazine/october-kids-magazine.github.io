@@ -5,3 +5,6 @@
 @media(max-width:700px){.story-art{height:176px}.story-feature .body-copy{font-size:11.7px}.contents .toc-list b{width:18px;height:18px;line-height:18px;font-size:12px}}
 .contents .toc-list a{padding:3px 0}
 @media(max-width:700px){.contents .toc-list a{padding:2px 0}}
+.deputy-entry .deputy-photo{width:62px;height:76px;object-fit:cover;object-position:center 28%;border-radius:10px 3px;border:2px solid #fff8e7;flex:0 0 auto}
+.deputy-entry{gap:12px}
+@media(max-width:700px){.deputy-entry .deputy-photo{width:40px;height:49px;border-width:1px}.deputy-entry{gap:7px}}
